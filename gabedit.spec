@@ -12,7 +12,6 @@ Source:		http://lasim.univ-lyon1.fr/allouche/gabedit/Gabedit2_%{tardate}.tar.bz2
 URL:		http://hplasim2.univ-lyon1.fr/allouche/gabedit
 License:	BSD
 Group:		Sciences/Chemistry
-BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	jpeg-devel gtk2-devel libmesaglu-devel
 
 %description
