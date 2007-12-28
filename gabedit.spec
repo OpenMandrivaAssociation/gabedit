@@ -58,17 +58,24 @@ Gabedit can generate automatically a series of pictures for animation
 %patch -p1
 
 %build
-make
-# CFLAGS="-Wall $RPM_OPT_FLAGS `gtk-config --cflags`"
+%make
 										
 %install
 mkdir -p $RPM_BUILD_ROOT/%_bindir
 cp %name $RPM_BUILD_ROOT/%_bindir
 
 #menu
-mkdir -p $RPM_BUILD_ROOT%{_menudir}
-cat << EOF > $RPM_BUILD_ROOT%{_menudir}/%{name}
-?package(%{name}): command="%{name}" icon="%{name}.png" needs="x11" title="Gabedit" longtitle="Computational Chem GUI" section="More Applications/Sciences/Chemistry"
+mkdir -p %{buildroot}%{_datadir}/applications
+cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop <<EOF
+[Desktop Entry]
+Name=gabedit
+Comment=Quantum chemistry interface
+Exec=%{_bindir}/%{name}
+Icon=%{name}
+Terminal=false
+Type=Application
+StartupNotify=true
+Categories=GNOME;GTK;Education;Chemistry;X-MandrivaLinux-MoreApplications-Sciences-Chemistry;
 EOF
 
 #icons
@@ -92,7 +99,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %doc License utils
 %{_bindir}/%name
-%{_menudir}/%name
+%{_datadir}/applications/*
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
