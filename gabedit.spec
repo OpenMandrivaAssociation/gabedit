@@ -1,7 +1,7 @@
 %define name	gabedit
 %define version	2.0.10
 %define tarver	210
-%define release %mkrel 1
+%define release %mkrel 2
 
 Name: 	 	%{name}
 Summary: 	GUI for comupational chemistry
