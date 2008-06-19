@@ -1,16 +1,16 @@
 %define name	gabedit
-%define version	2.0.10
-%define tarver	210
-%define release %mkrel 2
+%define version	2.1.4
+%define tarver	214
+%define release %mkrel 1
 
 Name: 	 	%{name}
 Summary: 	GUI for comupational chemistry
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		http://lasim.univ-lyon1.fr/allouche/gabedit/Gabedit%{tarver}Src.tar.gz
-Patch:		gabedit_gtk2.12.diff
-URL:		http://hplasim2.univ-lyon1.fr/allouche/gabedit
+Source:		Gabedit%{tarver}Src.tar.gz
+#Patch:		gabedit_gtk2.12.diff
+URL:		http://lasim.univ-lyon1.fr/perso/allouche/gabedit
 License:	BSD
 Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-buildroot
@@ -56,7 +56,7 @@ Gabedit can generate automatically a series of pictures for animation
 
 %prep
 %setup -q -n Gabedit%{tarver}Src
-%patch -p1
+#%patch -p1
 
 %build
 %make
