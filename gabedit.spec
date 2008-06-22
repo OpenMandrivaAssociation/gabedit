@@ -10,7 +10,7 @@ Release: 	%{release}
 
 Source:		Gabedit%{tarver}Src.tar.gz
 #Patch:		gabedit_gtk2.12.diff
-URL:		http://lasim.univ-lyon1.fr/perso/allouche/gabedit
+URL:		http://gabedit.sourceforge.net/
 License:	BSD
 Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-buildroot
