@@ -1,6 +1,6 @@
 %define name	gabedit
-%define version	2.1.4
-%define tarver	214
+%define version	2.1.8
+%define tarver	218
 %define release %mkrel 1
 
 Name: 	 	%{name}
@@ -8,7 +8,7 @@ Summary: 	GUI for comupational chemistry
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		Gabedit%{tarver}Src.tar.gz
+Source:		http://prdownloads.sourceforge.net/gabedit/Gabedit%{tarver}Src.tar.gz
 #Patch:		gabedit_gtk2.12.diff
 URL:		http://gabedit.sourceforge.net/
 License:	BSD
@@ -56,12 +56,12 @@ Gabedit can generate automatically a series of pictures for animation
 
 %prep
 %setup -q -n Gabedit%{tarver}Src
-#%patch -p1
 
 %build
 %make
-										
+								
 %install
+rm -fr %buildroot
 mkdir -p $RPM_BUILD_ROOT/%_bindir
 cp %name $RPM_BUILD_ROOT/%_bindir
 
