@@ -9,7 +9,9 @@ Version: 	%{version}
 Release: 	%{release}
 
 Source:		http://prdownloads.sourceforge.net/gabedit/Gabedit%{tarver}Src.tar.gz
-#Patch:		gabedit_gtk2.12.diff
+Patch0:		90_config_for_debian.dpatch
+Patch1:		fix_ftbfs_enable_gtk_deprecated.dpatch
+Patch2:		fix_programming_issues.dpatch
 URL:		http://gabedit.sourceforge.net/
 License:	BSD
 Group:		Sciences/Chemistry
@@ -56,9 +58,12 @@ Gabedit can generate automatically a series of pictures for animation
 
 %prep
 %setup -q -n Gabedit%{tarver}Src
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
-%make
+%make COMMONCFLAGS="%{optflags}" LDFLAGS="%{?ldflags}"
 								
 %install
 rm -fr %buildroot
@@ -108,4 +113,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_liconsdir}/%name.png
 %{_iconsdir}/%name.png
 %{_miconsdir}/%name.png
-
