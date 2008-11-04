@@ -17,6 +17,7 @@ License:	BSD
 Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-buildroot
 BuildRequires:	jpeg-devel gtk2-devel libmesaglu-devel
+BuildRequires:	gtkglarea-devel
 
 %description
 Gabedit is a Graphical User Interface to Gamess-US, Gaussian, Molcas, Molpro
