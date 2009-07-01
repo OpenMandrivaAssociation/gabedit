@@ -1,6 +1,6 @@
 %define name	gabedit
-%define version	2.1.8
-%define tarver	218
+%define version	2.2.0
+%define tarver	220
 %define release %mkrel 1
 
 Name: 	 	%{name}
@@ -8,10 +8,11 @@ Summary: 	GUI for comupational chemistry
 Version: 	%{version}
 Release: 	%{release}
 
-Source:		http://prdownloads.sourceforge.net/gabedit/Gabedit%{tarver}Src.tar.gz
+Source:		http://prdownloads.sourceforge.net/gabedit/GabeditSrc%{tarver}.tar.gz
 Patch0:		90_config_for_debian.dpatch
 Patch1:		fix_ftbfs_enable_gtk_deprecated.dpatch
 Patch2:		fix_programming_issues.dpatch
+Patch3:		gabedit-2.2.0-fix-str-fmt.patch
 URL:		http://gabedit.sourceforge.net/
 License:	BSD
 Group:		Sciences/Chemistry
@@ -58,12 +59,14 @@ Gabedit can generate automatically a series of pictures for animation
 (vibration, geometry convergence, rotation, contours, planes colorcoded).
 
 %prep
-%setup -q -n Gabedit%{tarver}Src
+%setup -q -n GabeditSrc%{tarver}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
+%patch1 -p1 -b .gtk
+#patch2 -p1
+%patch3 -p0
 
 %build
+%define Werror_cflags %nil
 %make COMMONCFLAGS="%{optflags}" LDFLAGS="%{?ldflags}"
 								
 %install
@@ -82,7 +85,7 @@ Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=GNOME;GTK;Education;Chemistry;X-MandrivaLinux-MoreApplications-Sciences-Chemistry;
+Categories=GNOME;GTK;Education;Chemistry;
 EOF
 
 #icons
