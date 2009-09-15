@@ -1,5 +1,5 @@
 %define name	gabedit
-%define version	2.2.0
+%define version	2.2.5
 %define tarver	220
 %define release %mkrel 1
 
