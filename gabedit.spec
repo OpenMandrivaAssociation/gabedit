@@ -3,7 +3,7 @@
 Name: 	 	gabedit
 Summary: 	GUI for comupational chemistry
 Version: 	2.2.5
-Release: 	%mkrel 1
+Release: 	%mkrel 2
 
 Source:		http://prdownloads.sourceforge.net/gabedit/GabeditSrc%{tarver}.tar.gz
 Patch0:		90_config_for_debian.dpatch
