@@ -1,12 +1,9 @@
-%define name	gabedit
-%define version	2.2.5
-%define tarver	220
-%define release %mkrel 1
+%define tarver	%(echo %{version} | sed -e 's/\\.//g')
 
-Name: 	 	%{name}
+Name: 	 	gabedit
 Summary: 	GUI for comupational chemistry
-Version: 	%{version}
-Release: 	%{release}
+Version: 	2.2.5
+Release: 	%mkrel 1
 
 Source:		http://prdownloads.sourceforge.net/gabedit/GabeditSrc%{tarver}.tar.gz
 Patch0:		90_config_for_debian.dpatch
