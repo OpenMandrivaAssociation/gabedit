@@ -2,19 +2,17 @@
 
 Name: 	 	gabedit
 Summary: 	GUI for comupational chemistry
-Version: 	2.2.9
+Version: 	2.3.0
 Release: 	%mkrel 1
 
-Source:		http://prdownloads.sourceforge.net/gabedit/GabeditSrc%{tarver}.tar.gz
-Patch0:		90_config_for_debian.dpatch
-Patch1:		fix_ftbfs_enable_gtk_deprecated.dpatch
-Patch2:		fix_programming_issues.dpatch
+Source:		http://download.sourceforge.net/sourceforge/gabedit/GabeditSrc%{tarver}.tar.gz
 Patch3:		gabedit-2.2.0-fix-str-fmt.patch
+Patch4:		gabedit-2.3.0-gtk-2.20.patch
 URL:		http://gabedit.sourceforge.net/
 License:	BSD
 Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-buildroot
-BuildRequires:	jpeg-devel gtk2-devel libmesaglu-devel
+BuildRequires:	gtk2-devel libmesaglu-devel
 BuildRequires:	gtkglarea-devel
 
 %description
@@ -57,10 +55,8 @@ Gabedit can generate automatically a series of pictures for animation
 
 %prep
 %setup -q -n GabeditSrc%{tarver}
-%patch0 -p1
-%patch1 -p1 -b .gtk
-#patch2 -p1
 %patch3 -p0
+%patch4 -p0 -b .gtk
 
 %build
 %define Werror_cflags %nil
