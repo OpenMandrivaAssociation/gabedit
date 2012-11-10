@@ -1,0 +1,174 @@
+--- src/Gaussian/GInterfaceBasis.c~	2009-05-29 15:30:42.000000000 +0200
++++ src/Gaussian/GInterfaceBasis.c	2009-07-01 09:09:42.000000000 +0200
+@@ -541,7 +541,7 @@
+ 		{
+ 			model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
+ 			gtk_tree_selection_select_path  (gtk_tree_view_get_selection (GTK_TREE_VIEW (widget)), path);
+-			sprintf(selectedRowForType ,gtk_tree_path_to_string(path));
++			sprintf(selectedRowForType ,"%s",gtk_tree_path_to_string(path));
+ 			gtk_tree_model_get_iter (model, &iter, path);
+ 			gtk_tree_path_free(path);
+   			if (event->type == GDK_2BUTTON_PRESS && ((GdkEventButton *) event)->button == 1)
+@@ -570,7 +570,7 @@
+ 		{
+ 			model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
+ 			gtk_tree_selection_select_path  (gtk_tree_view_get_selection (GTK_TREE_VIEW (widget)), path);
+-			sprintf(selectedRowForCenter ,gtk_tree_path_to_string(path));
++			sprintf(selectedRowForCenter ,"%s",gtk_tree_path_to_string(path));
+ 			gtk_tree_model_get_iter (model, &iter, path);
+ 			gtk_tree_path_free(path);
+   			if (event->type == GDK_2BUTTON_PRESS && ((GdkEventButton *) event)->button == 1)
+--- src/OpenGL/GeomOrbXYZ.c~	2009-05-29 15:30:43.000000000 +0200
++++ src/OpenGL/GeomOrbXYZ.c	2009-07-01 12:16:08.000000000 +0200
+@@ -1100,7 +1100,7 @@
+ 		sprintf(title,"[Gabedit Format]");
+ 		sprintf(message,"Sorry\nThis file is not a gabedit type file");
+ 	}
+-	sprintf(titleCap,title);
++	sprintf(titleCap,"%s",title);
+ 	g_strup(titleCap);
+ 
+  	for(i=0;i<5;i++)
+@@ -1128,7 +1128,7 @@
+ 	if(!feof(fd))
+ 		fgets(t,taille,fd);
+ 
+-	sprintf(tCap,t);
++	sprintf(tCap,"%s",t);
+ 	g_strup(tCap);
+ 
+ 	if(!strstr(tCap,titleCap))
+@@ -2777,7 +2777,7 @@
+     		else GeomOrb=g_realloc(GeomOrb,(j+1)*sizeof(TypeGeomOrb));
+ 
+ 		sscanf(t,"%s %s %s",AtomCoord[1],AtomCoord[2],AtomCoord[3]);
+-		if(j<nElements) sprintf(AtomCoord[0],elements[j]);
++		if(j<nElements) sprintf(AtomCoord[0],"%s",elements[j]);
+ 		else sprintf(AtomCoord[0],"X");
+ 		AtomCoord[0][0]=toupper(AtomCoord[0][0]);
+ 		l=strlen(AtomCoord[0]); 
+--- src/Files/ListeFiles.c~	2009-05-29 15:30:42.000000000 +0200
++++ src/Files/ListeFiles.c	2009-07-01 16:36:54.000000000 +0200
+@@ -1792,7 +1792,7 @@
+ 		{
+ 			model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
+ 			gtk_tree_selection_select_path  (gtk_tree_view_get_selection (GTK_TREE_VIEW (widget)), path);
+-			sprintf(selectedRow ,gtk_tree_path_to_string(path));
++			sprintf(selectedRow ,"%s",gtk_tree_path_to_string(path));
+ 			gtk_tree_model_get_iter (model, &iter, path);
+ 			gtk_tree_path_free(path);
+         		if (event->type == GDK_2BUTTON_PRESS &&  ((GdkEventButton *) event)->button == 1)
+--- src/OpenGL/OrbitalsGamess.c~	2009-05-29 15:30:43.000000000 +0200
++++ src/OpenGL/OrbitalsGamess.c	2009-07-01 16:40:20.000000000 +0200
+@@ -631,7 +631,7 @@
+ 	}
+ 	for(k=0;k<Ncenters;k++)
+ 	{
+-		sprintf(sym,GeomOrb[k].Symb);
++		sprintf(sym,"%s",GeomOrb[k].Symb);
+ 		i = GeomOrb[k].NumType;
+ 		/* printf("numType = %d\n",k);*/
+      		Type[i].Symb=g_strdup(sym);
+--- src/Geometry/GeomXYZ.c~	2009-05-29 15:30:42.000000000 +0200
++++ src/Geometry/GeomXYZ.c	2009-07-01 16:41:54.000000000 +0200
+@@ -3038,7 +3038,7 @@
+ 		if(!read_atom_hin_file(fd,listFields, natoms,GeomXYZ[j].typeConnections,&nc))continue;
+ 		if(strcmp(listFields[0],"Unknown")==0)
+ 		{
+-			sprintf(resName,listFields[1]);
++			sprintf(resName,"%s",listFields[1]);
+ 			i++;
+ 			continue;
+ 		}
+@@ -7309,7 +7309,7 @@
+    		GeomXYZ[j].typeConnections = NULL;
+ 
+ 		sscanf(t,"%s %s %s",AtomCoord[1],AtomCoord[2],AtomCoord[3]);
+-		if(j<nElements) sprintf(AtomCoord[0],elements[j]);
++		if(j<nElements) sprintf(AtomCoord[0],"%s",elements[j]);
+ 		else sprintf(AtomCoord[0],"X");
+ 		AtomCoord[0][0]=toupper(AtomCoord[0][0]);
+ 		l=strlen(AtomCoord[0]); 
+--- src/OpenGL/OrbitalsQChem.c~	2009-05-29 15:30:43.000000000 +0200
++++ src/OpenGL/OrbitalsQChem.c	2009-07-01 16:47:14.000000000 +0200
+@@ -593,7 +593,7 @@
+ 	}
+ 	for(k=0;k<Ncenters;k++)
+ 	{
+-		sprintf(sym,GeomOrb[k].Symb);
++		sprintf(sym,"%s",GeomOrb[k].Symb);
+ 		i = GeomOrb[k].NumType;
+ 		/* printf("numType = %d\n",k);*/
+      		Type[i].Symb=g_strdup(sym);
+--- src/Molpro/MolproBasisLibrary.c~	2009-05-29 15:30:42.000000000 +0200
++++ src/Molpro/MolproBasisLibrary.c	2009-07-01 16:48:06.000000000 +0200
+@@ -354,7 +354,7 @@
+ 		{
+ 			model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
+ 			gtk_tree_selection_select_path  (gtk_tree_view_get_selection (GTK_TREE_VIEW (widget)), path);
+-			sprintf(selectedRow ,gtk_tree_path_to_string(path));
++			sprintf(selectedRow ,"%s",gtk_tree_path_to_string(path));
+ 			gtk_tree_model_get_iter (model, &iter, path);
+ 			gtk_tree_path_free(path);
+   			if (event->type == GDK_BUTTON_PRESS && ((GdkEventButton *) event)->button == 3)
+--- src/MolecularMechanics/SetMMParameters.c~	2009-05-29 15:30:42.000000000 +0200
++++ src/MolecularMechanics/SetMMParameters.c	2009-07-01 16:48:50.000000000 +0200
+@@ -239,7 +239,7 @@
+ 			gint nList = gtk_notebook_get_current_page(GTK_NOTEBOOK(NoteBook));
+ 			model = gtk_tree_view_get_model(GTK_TREE_VIEW(widget));
+ 			gtk_tree_selection_select_path  (gtk_tree_view_get_selection (GTK_TREE_VIEW (widget)), path);
+-			sprintf(rowSelectedLists[nList] ,gtk_tree_path_to_string(path));
++			sprintf(rowSelectedLists[nList] ,"%s",gtk_tree_path_to_string(path));
+ 			gtk_tree_model_get_iter (model, &iter, path);
+ 			gtk_tree_path_free(path);
+ 			if (event->type == GDK_2BUTTON_PRESS) editDlg(NULL, NULL);
+--- src/Geometry/ResultsAnalise.c~	2009-05-29 15:30:42.000000000 +0200
++++ src/Geometry/ResultsAnalise.c	2009-07-01 16:50:46.000000000 +0200
+@@ -216,8 +216,8 @@
+                  	}
+ 		 	GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1] = g_malloc(50*sizeof(char)); 
+ 		 	GeomConv[Ncalculs-1].TypeCalcul = g_strdup(" ");
+-                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], tmp);
+-                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], temp);
++                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], "%s", tmp);
++                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], "%s", temp);
+ 		}
+ 	}
+ 	fclose(fd);
+@@ -783,8 +783,8 @@
+                  	}
+ 		 	GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1] = g_malloc(50*sizeof(char)); 
+ 		 	GeomConv[Ncalculs-1].TypeCalcul = g_strdup(" ");
+-                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], tmp);
+-                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], temp);
++                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], "%s", tmp);
++                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], "%s", temp);
+ 		}
+ 	}
+ 	fclose(fd);
+@@ -922,9 +922,9 @@
+                  	}
+ 		 	GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1] = g_malloc(50*sizeof(char)); 
+ 		 	GeomConv[Ncalculs-1].TypeCalcul = g_strdup(" ");
+-                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], tmp);
+-                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], maxgrad);
+-                 	sprintf(GeomConv[Ncalculs-1].Data[2][GeomConv[Ncalculs-1].Npoint-1], rmsgrad);
++                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], "%s", tmp);
++                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], "%s", maxgrad);
++                 	sprintf(GeomConv[Ncalculs-1].Data[2][GeomConv[Ncalculs-1].Npoint-1], "%s", rmsgrad);
+ 		}
+ 	}
+ 	fclose(fd);
+@@ -1045,9 +1045,9 @@
+                  	}
+ 		 	GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1] = g_malloc(50*sizeof(char)); 
+ 		 	GeomConv[Ncalculs-1].TypeCalcul = g_strdup(" ");
+-                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], tmp);
+-                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], maxgrad);
+-                 	sprintf(GeomConv[Ncalculs-1].Data[2][GeomConv[Ncalculs-1].Npoint-1], rmsgrad);
++                 	sprintf(GeomConv[Ncalculs-1].Data[0][GeomConv[Ncalculs-1].Npoint-1], "%s", tmp);
++                 	sprintf(GeomConv[Ncalculs-1].Data[1][GeomConv[Ncalculs-1].Npoint-1], "%s", maxgrad);
++                 	sprintf(GeomConv[Ncalculs-1].Data[2][GeomConv[Ncalculs-1].Npoint-1], "%s", rmsgrad);
+ 		}
+ 	}
+ 	fclose(fd);

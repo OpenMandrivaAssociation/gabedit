@@ -1,0 +1,158 @@
+--- src/Common/SplashScreen.c.gtk	2010-07-12 09:11:42.000000000 +0200
++++ src/Common/SplashScreen.c	2010-07-17 18:32:58.000000000 +0200
+@@ -352,7 +352,7 @@
+   	pixmap = (GdkPixmap *)g_object_get_data(G_OBJECT(widget), "Pixmap");
+ 	if(pixmap)
+ 		gdk_draw_drawable(widget->window,
+-                  widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
++                  widget->style->fg_gc[gtk_widget_get_state (widget)],
+                   pixmap,
+                   event->area.x, event->area.y,
+                   event->area.x, event->area.y,
+--- src/Geometry/DrawGeom.c.gtk	2010-07-12 09:11:42.000000000 +0200
++++ src/Geometry/DrawGeom.c	2010-07-17 18:32:58.000000000 +0200
+@@ -6841,7 +6841,7 @@
+ static void redraw()
+ {
+   gdk_draw_drawable(ZoneDessin->window,
+-                  ZoneDessin->style->fg_gc[GTK_WIDGET_STATE (ZoneDessin)],
++                  ZoneDessin->style->fg_gc[gtk_widget_get_state (ZoneDessin)],
+                   pixmap,
+                   0,0,
+                   0,0,
+@@ -6890,7 +6890,7 @@
+ {
+ 	if(event->count >0) return FALSE;
+ 	gdk_draw_drawable(widget->window,
+-                  widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
++                  widget->style->fg_gc[gtk_widget_get_state (widget)],
+                   pixmap,
+                   event->area.x, event->area.y,
+                   event->area.x, event->area.y,
+--- src/Geometry/EnergiesCurves.c.gtk	2010-07-12 09:11:42.000000000 +0200
++++ src/Geometry/EnergiesCurves.c	2010-07-17 18:32:58.000000000 +0200
+@@ -156,7 +156,7 @@
+ {
+ 	GdkPixmap *pixmap = (GdkPixmap*)(g_object_get_data(G_OBJECT(widget),"Pixmap")); 
+   	gdk_draw_drawable(widget->window,
+-                  	widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
++                  	widget->style->fg_gc[gtk_widget_get_state (widget)],
+                   	pixmap,
+                   	event->area.x, event->area.y,
+                   	event->area.x, event->area.y,
+@@ -181,7 +181,7 @@
+ 	
+ 
+ 	  gdk_draw_drawable(widget->window,
+-                  widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
++                  widget->style->fg_gc[gtk_widget_get_state (widget)],
+                   pixmap,
+                   0,0,
+                   0,0,
+--- src/Geometry/PreviewGeom.c.gtk	2010-07-12 09:11:42.000000000 +0200
++++ src/Geometry/PreviewGeom.c	2010-07-17 18:32:58.000000000 +0200
+@@ -729,7 +729,7 @@
+ 	PrevData* prevData = (PrevData*)g_object_get_data(G_OBJECT (drawingArea), "PrevData");
+ 	if(!prevData)return;
+ 	gdk_draw_drawable(drawingArea->window,
+-                  drawingArea->style->fg_gc[GTK_WIDGET_STATE (drawingArea)],
++                  drawingArea->style->fg_gc[gtk_widget_get_state (drawingArea)],
+                   prevData->pixmap,
+                   0,0,
+                   0,0,
+@@ -902,7 +902,7 @@
+ 	if(event->count >0) return FALSE;
+ 	if(!prevData)return FALSE;
+ 	gdk_draw_drawable(widget->window,
+-                  widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
++                  widget->style->fg_gc[gtk_widget_get_state (widget)],
+                   prevData->pixmap,
+                   event->area.x, event->area.y,
+                   event->area.x, event->area.y,
+--- src/OpenGL/ColorMap.c.gtk	2010-07-12 09:11:42.000000000 +0200
++++ src/OpenGL/ColorMap.c	2010-07-17 18:32:58.000000000 +0200
+@@ -643,7 +643,7 @@
+   	pixmap = (GdkPixmap *)g_object_get_data(G_OBJECT(widget), "Pixmap");
+ 	if(pixmap)
+ 		gdk_draw_drawable(widget->window,
+-                  widget->style->fg_gc[GTK_WIDGET_STATE (widget)],
++                  widget->style->fg_gc[gtk_widget_get_state (widget)],
+                   pixmap,
+                   event->area.x, event->area.y,
+                   event->area.x, event->area.y,
+--- src/OpenGL/GLArea.c.gtk	2010-07-12 09:11:42.000000000 +0200
++++ src/OpenGL/GLArea.c	2010-07-17 18:32:58.000000000 +0200
+@@ -781,7 +781,7 @@
+ {
+ 	/* OpenGL functions can be called only if make_current returns true */
+ 	if(!GTK_IS_WIDGET(widget)) return TRUE;
+-	if(!GTK_WIDGET_REALIZED(widget)) return TRUE;
++	if(!gtk_widget_get_realized(widget)) return TRUE;
+ 	if (gtk_gl_area_make_current(GTK_GL_AREA(widget)))
+ 	{
+ 		glViewport(0,0, widget->allocation.width, widget->allocation.height);
+@@ -1029,7 +1029,7 @@
+ 	GLdouble m[4][4];
+ 	GtkWidget *widget = GLArea;
+ 	if(!GTK_IS_WIDGET(widget)) return TRUE;
+-	if(!GTK_WIDGET_REALIZED(widget)) return TRUE;
++	if(!gtk_widget_get_realized(widget)) return TRUE;
+ 
+     	glMatrixMode(GL_PROJECTION);
+     	glLoadIdentity();
+@@ -1088,7 +1088,7 @@
+ {
+ 	GLdouble m[4][4];
+ 	if(!GTK_IS_WIDGET(widget)) return TRUE;
+-	if(!GTK_WIDGET_REALIZED(widget)) return TRUE;
++	if(!gtk_widget_get_realized(widget)) return TRUE;
+ 	if (!gtk_gl_area_make_current(GTK_GL_AREA(widget))) return FALSE;
+ 
+     	glMatrixMode(GL_PROJECTION);
+@@ -1153,7 +1153,7 @@
+ 	static gint i = 0;
+ 	i++;
+ 	if (!GTK_IS_WIDGET(widget)) return TRUE;
+-	if(!GTK_WIDGET_REALIZED(widget)) return TRUE;
++	if(!gtk_widget_get_realized(widget)) return TRUE;
+ 	/* Draw only last expose. */
+ 	if (event->count > 0) return FALSE;
+ 
+@@ -1167,7 +1167,7 @@
+ gint reshape(GtkWidget *widget, GdkEventConfigure *event)
+ {
+ 	if (!GTK_IS_WIDGET(widget)) return TRUE;
+-	if(!GTK_WIDGET_REALIZED(widget)) return TRUE;
++	if(!gtk_widget_get_realized(widget)) return TRUE;
+ 
+ 	/* OpenGL functions can be called only if make_current returns true */
+ 	if (gtk_gl_area_make_current(GTK_GL_AREA(widget)))
+--- src/OpenGL/UtilsOrb.c.gtk	2010-07-17 18:35:27.000000000 +0200
++++ src/OpenGL/UtilsOrb.c	2010-07-17 18:35:56.000000000 +0200
+@@ -2320,7 +2320,7 @@
+ 			g_object_set_data(G_OBJECT(entryRight),"ColorMap", colorMap);
+ 			g_object_set_data(G_OBJECT(darea),"ColorMap", colorMap);
+ 			color_map_refresh(handleBoxColorMapGrid);
+-			if(GTK_WIDGET_VISIBLE(handleBoxColorMapGrid))
++			if(gtk_widget_get_visible(handleBoxColorMapGrid))
+ 			{
+ 				gtk_widget_hide(handleBoxColorMapGrid);
+ 				gtk_widget_show(handleBoxColorMapGrid);
+@@ -2351,7 +2351,7 @@
+ 			g_object_set_data(G_OBJECT(entryRight),"ColorMap", colorMap);
+ 			g_object_set_data(G_OBJECT(darea),"ColorMap", colorMap);
+ 			color_map_refresh(handleBoxColorMapPlanesMapped);
+-			if(GTK_WIDGET_VISIBLE(handleBoxColorMapPlanesMapped))
++			if(gtk_widget_get_visible(handleBoxColorMapPlanesMapped))
+ 			{
+ 				gtk_widget_hide(handleBoxColorMapPlanesMapped);
+ 				gtk_widget_show(handleBoxColorMapPlanesMapped);
+@@ -2384,7 +2384,7 @@
+ 			g_object_set_data(G_OBJECT(entryRight),"ColorMap", colorMap);
+ 			g_object_set_data(G_OBJECT(darea),"ColorMap", colorMap);
+ 			color_map_refresh(handleBoxColorMapContours);
+-			if(GTK_WIDGET_VISIBLE(handleBoxColorMapContours))
++			if(gtk_widget_get_visible(handleBoxColorMapContours))
+ 			{
+ 				gtk_widget_hide(handleBoxColorMapContours);
+ 				gtk_widget_show(handleBoxColorMapContours);
