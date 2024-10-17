@@ -8,7 +8,7 @@ Release: 	%mkrel 1
 Source:		http://download.sourceforge.net/sourceforge/gabedit/GabeditSrc%{tarver}.tar.gz
 Patch3:		gabedit-2.2.0-fix-str-fmt.patch
 Patch4:		gabedit-2.3.0-gtk-2.20.patch
-URL:		http://gabedit.sourceforge.net/
+URL:		https://gabedit.sourceforge.net/
 License:	BSD
 Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-buildroot
