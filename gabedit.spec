@@ -12,6 +12,7 @@ URL:		https://gabedit.sourceforge.net/
 License:	BSD
 Group:		Sciences/Chemistry
 BuildRoot:	%{_tmppath}/%{name}-buildroot
+BuildRequires:	make
 BuildRequires:	gtk2-devel libmesaglu-devel
 
 %description
