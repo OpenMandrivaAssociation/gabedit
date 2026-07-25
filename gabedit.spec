@@ -3,7 +3,7 @@
 Name: 	 	gabedit
 Summary: 	GUI for comupational chemistry
 Version: 	2.3.0
-Release: 	%mkrel 1
+Release: 	2
 
 Source:		http://download.sourceforge.net/sourceforge/gabedit/GabeditSrc%{tarver}.tar.gz
 Patch3:		gabedit-2.2.0-fix-str-fmt.patch
